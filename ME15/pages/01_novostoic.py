@@ -403,7 +403,7 @@ def main():
             path=None, keepFiles=0, mip=1, msg=1)
         use_direction = False
         novoStoic_minFlux_relaxedRule(
-            rxn_dict, novel_metab, save_sol_folder, np.int(iterations), np.int(max_steps), pulp_solver, use_direction)
+            rxn_dict, novel_metab, save_sol_folder, int(iterations), int(max_steps), pulp_solver, use_direction)
 
 
 if __name__ == '__main__':
