@@ -1,1 +1,0 @@
-This folder contains a sample of the GAMS script and the JSON output for loopless optStoic simulation. Note that in order to run the script, you will need the commercial version of [GAMS](https://www.gams.com/). The content of the folder `optstoicpy/data/optstoic_db_v3` should be copied to the current directory (i.e., `optstoicpy/gams/data`).
