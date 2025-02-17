@@ -560,24 +560,26 @@ def optimal_stoic(reactant,product,add_info,min_int_val,max_int_val,ATP_input):
     #lp_prob += pulp.lpSum([bin_vars[id] for id in allow])<= 10
     
     #Constaint 4 (the reactant stoichiometry is fixed to 1)
-    lp_prob += stoi_vars[substrate] == -1
+    lp_prob += stoi_vars[substrate] == -1, "substrate_input"
+    lp_prob += stoi_vars[pdt[0]] >= 1, "product_output"
     #lp_prob += stoi_vars[substrate] >= -10
     pulp_solver = pulp.CPLEX_CMD(path=None,keepFiles=0, mip=1, msg=1)
     #pulp_solver = pulp.CPLEX_CMD(path=None,keepFiles=0, mip=0, msg=1)
     lp_prob.solve(pulp_solver)
-    
-    itr = 0
 
-    prev_itr=0
+    solver_flag = -1
+    while solver_flag > -10 and pulp.LpStatus[lp_prob.status] != 'Optimal':
+        solver_flag-=1
+        st.write("Substrate input is change to this value now = ",solver_flag)
+        lp_prob.constraints['substrate_input'].changeRHS(solver_flag)
+        lp_prob.solve(pulp_solver)
+        
     timestr = time.strftime("%Y%m%d-%H%M%S")
-    folder_path = './Results/optStoic_solutions/'+pdt[0]+'_'+timestr+'_'+'/int_cut_ids'
-    #folder_path = os.path.join(os.getcwd(), folder_path)
-    
+    folder_path = './Results/optStoic_solutions/'+pdt[0]+'_'+timestr+'_'+'/int_cut_ids'    
     #st.write(folder_path)
     if not os.path.exists(folder_path): 
         os.makedirs(folder_path)
     
-    #st.write(os.listdir(folder_path))
     # Iterate through all files in the folder
     for filename in os.listdir(folder_path):
         #print(filename)
@@ -596,11 +598,11 @@ def optimal_stoic(reactant,product,add_info,min_int_val,max_int_val,ATP_input):
                 file_content_list= file_content_list[:-1]
                 #st.write(file_content)
                 length = len(file_content_list) - 1
-                #total_vals = sum(int_cut_vals) - 1
-                #lp_prob += (pulp.lpSum([bin_vars[r] for r in file_content_list]) <= length, "integer_cut_" + str(prev_itr))
-               
-                    
-                    
+    
+    itr = 0
+
+    prev_itr=0
+    
     file_kegg = open('./Results/optStoic_solutions/'+pdt[0]+'_'+timestr+'_'+'/kegg_solns.txt', 'w')      
     file_met = open('./Results/optStoic_solutions/'+pdt[0]+'_'+timestr+'_'+'/met_solns.txt', 'w')
 
@@ -821,9 +823,13 @@ def main():
     else:
         add_info = {}
 
-    min_int_val = st.number_input("Set lower bound for stoichiometry values", value = -5)
-    max_int_val = st.number_input("Set upper bound for stoichiometry values", value = 5)
-    ATP_input = st.number_input("ATP input", value = 0)
+    bound = st.number_input("Set bound for co-reactant/co-product stoichiometry values", value = 5)
+    min_int_val = -1*bound
+    max_int_val = bound
+
+    #min_int_val = st.number_input("Set lower bound for stoichiometry values", value = -5)
+    #max_int_val = st.number_input("Set upper bound for stoichiometry values", value = 5)
+    ATP_input = st.number_input("ATP (-ve for input, +ve for output) ", value = 0)
     
     if st.button("Search"):
         # if session_state.button_search:
