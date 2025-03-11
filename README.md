@@ -1,6 +1,9 @@
 # novoStoic2.0
 novoStoic2.0: Integrated Pathway Design Tool with Thermodynamic Considerations and Enzyme Selection
 
+## 🔗 Website
+[Visit novoStoic2.0 website]([https://yourwebsite.com](https://novostoic.platform.moleculemaker.org/home))
+
 ## Related work
 1. Wang L, Upadhyay V, Maranas CD (2021) dGPredictor: Automated fragmentation method for metabolic reaction free energy prediction and de novo pathway design. PLOS Computational Biology 17(9): e1009448. https://doi.org/10.1371/journal.pcbi.1009448
 2. Upadhyay, V., Boorla, V. S., & Maranas, C. D. (2023). Rank-ordering of known enzymes as starting points for re-engineering novel substrate activity using a convolutional neural network. Metabolic engineering, 78, 171–182. https://doi.org/10.1016/j.ymben.2023.06.001
