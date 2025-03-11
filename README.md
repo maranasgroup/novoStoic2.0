@@ -36,3 +36,13 @@ Due to constraints of file sizes on github, we have published all the data and c
 ## Steps to run streamlit interface locally
 
 run the following on terminal after activating the conda environment `streamlit run Home.py`
+
+## Typical requirement of computational resources
+
+| **Tool**          | **Time Taken**   | **Start - End Time (Date)**           | **Link**                                                                                                                                                   |
+|-------------------|------------------|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **OptStoic**      | 1 min            | 1/8/25 1:46pm - 1:47pm               | [OptStoic Result](https://novostoic.platform.moleculemaker.org/overall-stoichiometry/result/5a3cbcdca72d4fdaab33603725bb9ef8)                            |
+| **Pathway Search**| 2 hours 37 mins  | 1/8/25 3:32pm - 6:09pm               | [Pathway Search Result](https://novostoic.platform.moleculemaker.org/pathway-search/result/bbabbd4fb3b747a7a7302172698d7499)                             |
+| **DG-Predictor**  | 2 mins           | 1/8/25 4:01pm - 4:03pm               | [DG-Predictor Result](https://novostoic.platform.moleculemaker.org/thermodynamical-feasibility/result/38d59b3a94db4b48a843a5dfb7c51de3)                 |
+| **EnzRank**       | 1 min            | 1/9/25 12:25am - 12:26am             | [EnzRank Result](https://novostoic.platform.moleculemaker.org/enzyme-selection/result/23f7f85f3b0545839785efc6368b4fe5)                                  |
+
